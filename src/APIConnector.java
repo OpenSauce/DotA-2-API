@@ -6,4 +6,8 @@ public class APIConnector {
 		this.API_KEY = API_KEY;
 	}
 	
+	public boolean connect() {
+		return false;
+	}
+	
 }
