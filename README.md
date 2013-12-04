@@ -1,4 +1,4 @@
 DotA-2-API
 ==========
 
-An API for DotA written in Java.
+A web API interface for DotA written in Java.
