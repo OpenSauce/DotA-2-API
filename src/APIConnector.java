@@ -1,4 +1,5 @@
 import java.io.File;
+import java.util.ArrayList;
 
 
 public class APIConnector {
@@ -19,11 +20,11 @@ public class APIConnector {
 		this.defaultFormat = defaultFormat;
 	}
 	
-	public File customParameter(String parameter) {
-		return null;
+	public boolean customParameter(String parameter) {
+		return false;
 	}
 	
-	public File getFullMatchHistory(DotaEntity entity) {
+	public ArrayList<Match> retrieveFullMatchHistory(DotaEntity entity) {
 		return null;
 	}
 	
