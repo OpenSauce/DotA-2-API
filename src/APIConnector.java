@@ -3,7 +3,11 @@ import java.io.File;
 
 public class APIConnector {
 	private Format defaultFormat;
+	private int fetchInterval = 500;
+	private int matchesRequested = 25;
 	final private String API_KEY;
+	final private String URL_BASE = 
+			"https://api.steampowered.com/IDOTA2Match_570/GetMatchHistory/V001/";
 
 	public APIConnector(String API_KEY) {
 		this.API_KEY = API_KEY;
@@ -19,23 +23,31 @@ public class APIConnector {
 		return null;
 	}
 	
-	public File fullMatchHistoryForSteamUser(String id) {
+	public File getFullMatchHistory(DotaEntity entity) {
 		return null;
 	}
 	
-	public File fullMatchHistoryForSteamID(String steamID) {
-		return null;
+	//Getters and setters
+	
+	public int getFetchInterval() {
+		return fetchInterval;
 	}
 	
-	public File fullMatchHistoryForHero(String hero) {
-		return null;
+	public void setFetchInterval(int newInterval) {
+		if(newInterval > 0) {
+			this.fetchInterval = newInterval;
+		} else {
+			System.out.println("New fetch interval must be above 0ms.");
+		}
 	}
 	
-	public File fullMatchHistoryForSkill(String skill) {
-		return null;
+	public int getMatchesRequested() {
+		return matchesRequested;
 	}
 	
-	public File matchIDHistory(String matchId) {
-		return null;
+	public void setMatchesRequested(int newMatchesRequested) {
+		if(newMatchesRequested > 0 && newMatchesRequested <= 25) {
+			matchesRequested = newMatchesRequested;
+		}
 	}
 }
