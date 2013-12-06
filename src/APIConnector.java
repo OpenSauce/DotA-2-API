@@ -1,4 +1,3 @@
-import java.io.File;
 import java.util.ArrayList;
 
 
@@ -25,6 +24,20 @@ public class APIConnector {
 	}
 	
 	public ArrayList<Match> retrieveFullMatchHistory(DotaEntity entity) {
+		ArrayList<Match> retrievedMatchList = new ArrayList<Match>();
+		
+		if(entity instanceof Player) {
+			
+		} else if (entity instanceof Hero) {
+			
+		} else {
+			System.out.println("Unknown instance of DotaEntity.");
+		}
+		
+		return retrievedMatchList;
+	}
+	
+	public ArrayList<Match> retrieveMatchHistory(DotaEntity entity, SearchConstraints constraints) {
 		return null;
 	}
 	
