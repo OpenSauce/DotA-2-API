@@ -1,7 +1,7 @@
 DotA-2-API
 ==========
 
-A WebAPI interface for DotA written in Java.
+A interface for the WebAPI DotA in Java, currently under development.
 
 Usage
 -----
