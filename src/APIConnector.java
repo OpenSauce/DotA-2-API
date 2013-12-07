@@ -1,4 +1,14 @@
+import java.io.IOException;
+import java.io.StringReader;
+import java.net.Socket;
+import java.net.URL;
 import java.util.ArrayList;
+
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
+import com.google.gson.stream.JsonReader;
+
+import org.apache.commons.io.IOUtils;
 
 
 public class APIConnector {
@@ -19,15 +29,23 @@ public class APIConnector {
 		this.defaultFormat = defaultFormat;
 	}
 	
-	public boolean customParameter(String parameter) {
-		return false;
+	private JsonElement retrieveJsonElement(String siteParameters) {
+		JsonElement jsonElement = null;
+		try {
+			String jsonString = IOUtils.toString(new URL(URL_BASE + 
+					"?key=" + API_KEY + siteParameters));
+			JsonParser jsonParser = new JsonParser();
+			jsonElement = jsonParser.parse(jsonString);
+		} catch(IOException e) {
+			
+		}
+		return jsonElement;
 	}
 	
 	public ArrayList<Match> retrieveFullMatchHistory(DotaEntity entity) {
 		ArrayList<Match> retrievedMatchList = new ArrayList<Match>();
-		
 		if(entity instanceof Player) {
-			
+			JsonElement retrievedJson = retrieveJsonElement("");
 		} else if (entity instanceof Hero) {
 			
 		} else {
