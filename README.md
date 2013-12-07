@@ -12,12 +12,13 @@ A simple example of how to retrieve a player's match history:
 
 		public static void main(String[] args) {
 			APIConnector aConnector = new APIConnector("<Your Api Key>");
-			ArrayList<Match> myMatchList = aConnector.retrieveFullMatchHistory(new Player("FruitLoops"));
+			ArrayList<Match> playerMatchList = aConnector.retrieveFullMatchHistory(new Player("58542407"));
+			ArrayList<Match> heroMatchList = aConnector.retrieveFullMatchHistory(new Hero("Death Prophet"));
 		}
 		
 	}
 	
-The above code will populate the Player object with Match objects for every match in their entire history.
+The above code will return an ArrayList of Match objects for every avaliable match in the player/hero's history.
 	
 Libraries Used
 --------------
