@@ -11,14 +11,13 @@ A simple example of how to retrieve a player's match history:
 	public class TestClass {
 
 		public static void main(String[] args) {
-			APIConnector aConnector = new APIConnector("<Your Api Key>");
-			ArrayList<Match> playerMatchList = aConnector.retrieveFullMatchHistory(new Player("58542407"));
-			ArrayList<Match> heroMatchList = aConnector.retrieveFullMatchHistory(new Hero("Death Prophet"));
+			APIHandler aHandler = new APIHandler("<Your Api Key>");
+			ArrayList<Match> playerMatchList = aHandler.retrieveFullMatchHistory(new Player("58542407"));
 		}
 		
 	}
 	
-The above code will return an ArrayList of Match objects for every avaliable match in the player/hero's history.
+The above code will return an ArrayList of Match objects for every avaliable match in the player's history.
 	
 Libraries Used
 --------------

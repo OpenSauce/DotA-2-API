@@ -1,16 +1,18 @@
 
 public class Player extends DotaEntity {
+	private String accountID;
 	
-	public Player(String username) {
-		
+	
+	public Player(String accountID) {
+		this.accountID = accountID;
 	}
-	
-	public Player(String username, String steamID) {
-		
+
+	public String getAccountID() {
+		return accountID;
 	}
-	
-	public void getFullMatchHistory() {
-		
+
+	public void setAccountID(String accountID) {
+		this.accountID = accountID;
 	}
 
 }

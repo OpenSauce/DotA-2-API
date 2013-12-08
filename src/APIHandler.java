@@ -11,7 +11,7 @@ import com.google.gson.stream.JsonReader;
 import org.apache.commons.io.IOUtils;
 
 
-public class APIConnector {
+public class APIHandler {
 	private Format defaultFormat;
 	private int fetchInterval = 500;
 	private int matchesRequested = 25;
@@ -19,12 +19,12 @@ public class APIConnector {
 	final private String URL_BASE = 
 			"https://api.steampowered.com/IDOTA2Match_570/GetMatchHistory/V001/";
 
-	public APIConnector(String API_KEY) {
+	public APIHandler(String API_KEY) {
 		this.API_KEY = API_KEY;
 		this.defaultFormat = Format.JSON;
 	}
 	
-	public APIConnector(String API_KEY, Format defaultFormat) {
+	public APIHandler(String API_KEY, Format defaultFormat) {
 		this.API_KEY = API_KEY;
 		this.defaultFormat = defaultFormat;
 	}
@@ -45,7 +45,8 @@ public class APIConnector {
 	public ArrayList<Match> retrieveFullMatchHistory(DotaEntity entity) {
 		ArrayList<Match> retrievedMatchList = new ArrayList<Match>();
 		if(entity instanceof Player) {
-			JsonElement retrievedJson = retrieveJsonElement("");
+			Player thisPlayer = (Player) entity;
+			JsonElement retrievedJson = retrieveJsonElement("&account_id=" + thisPlayer.getAccountID());
 		} else if (entity instanceof Hero) {
 			
 		} else {
