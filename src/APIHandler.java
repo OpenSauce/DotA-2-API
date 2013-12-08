@@ -4,7 +4,9 @@ import java.net.Socket;
 import java.net.URL;
 import java.util.ArrayList;
 
+import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.stream.JsonReader;
 
@@ -46,7 +48,18 @@ public class APIHandler {
 		ArrayList<Match> retrievedMatchList = new ArrayList<Match>();
 		if(entity instanceof Player) {
 			Player thisPlayer = (Player) entity;
-			JsonElement retrievedJson = retrieveJsonElement("&account_id=" + thisPlayer.getAccountID());
+			JsonElement jsonElement = retrieveJsonElement("&account_id=" + thisPlayer.getAccountID());
+			if(jsonElement.isJsonObject()) {
+				JsonObject result = jsonElement.getAsJsonObject().getAsJsonObject("result");
+				JsonArray matchList = result.getAsJsonArray("matches");
+				for(JsonElement matchListElement : matchList) {
+					Match match = new Match(matchListElement.getAsJsonObject().get("match_id").getAsString());
+					match.setLobbyType(matchListElement.getAsJsonObject().get("lobby_type").getAsString());
+					match.setMatchSeqNum(matchListElement.getAsJsonObject().get("match_seq_num").getAsString());
+					match.setStartTime(matchListElement.getAsJsonObject().get("start_time").getAsLong());
+					retrievedMatchList.add(match);
+				}
+			}
 		} else if (entity instanceof Hero) {
 			
 		} else {
