@@ -1,9 +1,9 @@
 
-public class Player extends DotaEntity {
+public class User extends DotaEntity {
 	private String accountID;
 	
 	
-	public Player(String accountID) {
+	public User(String accountID) {
 		this.accountID = accountID;
 	}
 

@@ -1,7 +1,5 @@
-import java.util.ArrayList;
-
 public class Match {
-	private Player[] players;
+	private PlayerInstance[] players;
 	private String matchID = "";
 	private String matchSeqNum;
 	private String lobbyType = "";
@@ -11,11 +9,11 @@ public class Match {
 		this.matchID = matchID;
 	}
 
-	public Player[] getPlayers() {
+	public PlayerInstance[] getPlayers() {
 		return players;
 	}
 
-	public void setPlayers(Player[] players) {
+	public void setPlayers(PlayerInstance[] players) {
 		this.players = players;
 	}
 

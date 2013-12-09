@@ -36,6 +36,15 @@ public class APIHandler {
 					match.setLobbyType(matchListElement.getAsJsonObject().get("lobby_type").getAsString());
 					match.setMatchSeqNum(matchListElement.getAsJsonObject().get("match_seq_num").getAsString());
 					match.setStartTime(matchListElement.getAsJsonObject().get("start_time").getAsLong());
+					JsonArray playerList = matchListElement.getAsJsonObject().getAsJsonArray("player");
+					PlayerInstance[] playerArray = new PlayerInstance[10];
+					for(int i = 0; i < 3; i++) {
+						String accountID = playerList.get(i).getAsJsonObject().get("account_id").getAsString();
+						String playerSlot = playerList.get(i).getAsJsonObject().get("player_slot").getAsString();
+						String heroID = playerList.get(i).getAsJsonObject().get("hero_id").getAsString();
+						playerArray[i] = new PlayerInstance(accountID, playerSlot, heroID);
+					}
+					match.setPlayers(playerArray);
 					matchList.add(match);
 				}
 				return matchList;
@@ -47,8 +56,8 @@ public class APIHandler {
 	}
 	
 	public ArrayList<Match> retrieveFullMatchHistory(DotaEntity entity) {
-		if(entity instanceof Player) {
-			Player thisPlayer = (Player) entity;
+		if(entity instanceof User) {
+			User thisPlayer = (User) entity;
 			return retrieveMatchesFromJson("&account_id=" + thisPlayer.getAccountID());	
 		} else if (entity instanceof Hero) {
 			Hero thisHero = (Hero) entity;
