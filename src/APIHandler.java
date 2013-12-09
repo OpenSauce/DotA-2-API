@@ -6,14 +6,16 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+
 import org.apache.commons.io.IOUtils;
 
 public class APIHandler {
-	private int fetchInterval = 500;
+	private int fetchInterval = 1000;
 	private int matchesRequested = 25;
 	final private String API_KEY;
 	final private String URL_MATCH_HISTORY_BASE = "https://api.steampowered.com/IDOTA2Match_570/GetMatchHistory/V001/";
-
+	final private String URL_MATCH_DETAILS_BASE = "http://api.steampowered.com/IDOTA2Match_<ID>/GetMatchDetails/v1/";
+	
 	public APIHandler(String API_KEY) {
 		this.API_KEY = API_KEY;
 	}
@@ -77,6 +79,9 @@ public class APIHandler {
 			fullMatchHistory.addAll(tempMatchHistory);
 			int tempID = Integer.parseInt(tempMatchHistory.get(tempMatchHistory.size()).getMatchID()) - 1;
 			lastMatchID = "&start_at_match_id=" + tempID;
+			try { Thread.sleep(fetchInterval); } catch (InterruptedException e) { 
+				System.out.println("Sleep thread threw interrupt exception!");
+			}
 		} while (tempMatchHistory.size() == 100);
 		return fullMatchHistory;
 	}
@@ -100,7 +105,7 @@ public class APIHandler {
 	} 
 	
 	public MatchDetails retrieveMatchDetails(Match match) {
-		return null;
+		return retrieveMatchDetails(match.getMatchID());
 	}
 
 	// Getters and setters
