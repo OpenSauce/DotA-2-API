@@ -69,14 +69,14 @@ public class APIHandler {
 	}
 
 	private ArrayList<Match> retrieveAllMatchesFromJson(String siteParameters) {
-		ArrayList<Match> fullMatchHistory = new ArrayList<Match>();
-		ArrayList<Match> tempMatchHistory = new ArrayList<Match>();
+		ArrayList<Match> fullMatchHistory = new ArrayList<Match>(), 
+				tempMatchHistory = new ArrayList<Match>();
 		String lastMatchID = "";
 		do {
 			tempMatchHistory = retrieveMatchesFromJson(siteParameters + lastMatchID);
 			fullMatchHistory.addAll(tempMatchHistory);
 			int tempID = Integer.parseInt(tempMatchHistory.get(tempMatchHistory.size()).getMatchID()) - 1;
-			lastMatchID = "&start_at_match_id= + tempID";
+			lastMatchID = "&start_at_match_id=" + tempID;
 		} while (tempMatchHistory.size() == 100);
 		return fullMatchHistory;
 	}
@@ -94,9 +94,12 @@ public class APIHandler {
 			return null;
 		}
 	}
-
-	public ArrayList<Match> retrieveMatchHistory(DotaEntity entity,
-			SearchConstraints constraints) {
+	
+	public MatchDetails retrieveMatchDetails(String matchID) {
+		return null;
+	} 
+	
+	public MatchDetails retrieveMatchDetails(Match match) {
 		return null;
 	}
 
