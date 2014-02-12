@@ -10,8 +10,7 @@ import com.google.gson.JsonParser;
 import org.apache.commons.io.IOUtils;
 
 public class APIHandler {
-	private int fetchInterval = 1000;
-	private int matchesRequested = 25;
+	private int fetchInterval = 1000, matchesRequested = 25;
 	final private String API_KEY;
 	final private String URL_MATCH_HISTORY_BASE = "https://api.steampowered.com/IDOTA2Match_570/GetMatchHistory/V001/";
 	final private String URL_MATCH_DETAILS_BASE = "http://api.steampowered.com/IDOTA2Match_<ID>/GetMatchDetails/v1/";
@@ -80,7 +79,7 @@ public class APIHandler {
 			int tempID = Integer.parseInt(tempMatchHistory.get(tempMatchHistory.size()).getMatchID()) - 1;
 			lastMatchID = "&start_at_match_id=" + tempID;
 			try { Thread.sleep(fetchInterval); } catch (InterruptedException e) { 
-				System.out.println("Sleep thread threw interrupt exception!");
+				System.out.println("Sleep thread was interrupted!");
 			}
 		} while (tempMatchHistory.size() == 100);
 		return fullMatchHistory;
@@ -90,12 +89,12 @@ public class APIHandler {
 		if (entity instanceof User) {
 			User thisPlayer = (User) entity;
 			return retrieveAllMatchesFromJson("&account_id="
-					+ thisPlayer.getAccountID());
+					+ thisPlayer.getID());
 		} else if (entity instanceof Hero) {
 			Hero thisHero = (Hero) entity;
 			return retrieveAllMatchesFromJson("&hero_id=" + thisHero.getID());
 		} else {
-			System.out.println("Unknown instance of DotaEntity.");
+			System.out.println("Unknown instance of a DotA entity.");
 			return null;
 		}
 	}

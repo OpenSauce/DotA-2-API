@@ -1,8 +1,6 @@
 public class Match {
 	private PlayerInstance[] players;
-	private String matchID = "";
-	private String matchSeqNum;
-	private String lobbyType = "";
+	private String matchID = "", matchSeqNum, lobbyType = "";
 	private long startTime;
 	
 	public Match(String matchID) {

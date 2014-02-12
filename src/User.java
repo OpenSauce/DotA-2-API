@@ -1,18 +1,17 @@
 
 public class User extends DotaEntity {
-	private String accountID;
+	private String currentName;
 	
-	
-	public User(String accountID) {
-		this.accountID = accountID;
+	public User(String ID) {
+		this.setID(ID);
 	}
 
-	public String getAccountID() {
-		return accountID;
+	public String getCurrentName() {
+		return currentName;
 	}
 
-	public void setAccountID(String accountID) {
-		this.accountID = accountID;
+	public void setCurrentName(String currentName) {
+		this.currentName = currentName;
 	}
 
 }
